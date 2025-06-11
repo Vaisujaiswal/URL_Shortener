@@ -1,14 +1,13 @@
-// vaishnavijaiswal707
-// H6xqthrkBP64IjMh
-
+import dotenv, { config } from"dotenv";
+dotenv.config()
 import express from "express";
 import mongoose from "mongoose";
 import { shortUrl, getOrignalUrl } from "./controller/url.js";
 
 const app = express()
-const port = 3000;
+const port = process.env.PORT;
 
-mongoose.connect("mongodb+srv://vaishnavijaiswal707:H6xqthrkBP64IjMh@cluster0.zgxms7k.mongodb.net/", {dbName: "Nodejs_form_DB"}).then(() => console.log("DB is Connected")).catch((err) => console.log(err));
+mongoose.connect(process.env.MONGODB_URL, {dbName: "Nodejs_form_DB"}).then(() => console.log("DB is Connected")).catch((err) => console.log(err));
 
 app.use(express.urlencoded({extended:true}))
 
