@@ -2,18 +2,18 @@ import shortid from "shortid";
 import { Url } from "../models/Url.js";
 
 
-export const shortUrl = async(req, res) => {
+export const shortUrl = async (req, res) => {
     const longUrl = req.body.longUrl;
-    console.log(longUrl);
-    const shortCode = shortid.generate()
-    const shortUrl = `http://localhost:3000/${shortCode}`
+    const shortCode = shortid.generate();
+    const shortUrl = `${process.env.BASE_URL}/${shortCode}`;
 
-    const newUrl = new Url({shortCode, longUrl});
-    await newUrl.save()
+    const newUrl = new Url({ shortCode, longUrl });
+    await newUrl.save();
 
-    console.log(`short save = ${newUrl}`)
-    res.render("index.ejs", {shortUrl})
+    console.log(`short save = ${newUrl}`);
+    res.render("index.ejs", { shortUrl });
 };
+
 
 
 export const getOrignalUrl = async(req,res) => {
