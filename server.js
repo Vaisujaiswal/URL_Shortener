@@ -10,6 +10,8 @@ const port = process.env.PORT;
 mongoose.connect(process.env.MONGODB_URL, {dbName: "Nodejs_form_DB"}).then(() => console.log("DB is Connected")).catch((err) => console.log(err));
 
 app.use(express.urlencoded({extended:true}))
+app.use(express.static("public"));
+
 
 app.get("/", (req,res) => {
     res.render("index.ejs", {shortUrl: null})
